@@ -15,8 +15,12 @@ enum CPUSpeed {MHz400, MHz600, MHz800, MHz1000, MHz1200, MHz1500, MHz1800, MHz20
 
 const int MAX_CONNECTIONS = 8;
 
-class cComputer
+
+class commonResources
 {
+public:
+
+protected:
 	unsigned int simID;
 	MemorySize RAM;
 	CPUSpeed CPU;
@@ -26,20 +30,17 @@ class cComputer
 	bool PowerOn;
 	unsigned int cnctdTo[MAX_CONNECTIONS];
 };
-
-class cPhone
+class cComputer : public commonResources
 {
-	unsigned int simID;
-	MemorySize RAM;
-	CPUSpeed CPU;
-	unsigned short CPU_Cores;
-	unsigned long long int HDD_Space;
-	unsigned long long int HDD_Filled;
-	bool PowerOn;
-	unsigned int cnctdTo[MAX_CONNECTIONS];
+	
+};
+class cPhone : public commonResources
+{
+
 };
 
-class cRouter
+class cRouter : public commonResources
 {
-	int simID;
+	cRouter *attachedRtrs[];
+	c
 };
