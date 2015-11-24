@@ -28,8 +28,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Readme.txt">
+    <None Include="..\README.md">
       <Filter>Resource Files</Filter>
-    </Text>
+    </None>
+    <None Include="..\AI Infection - Final Project Proposal.docx">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -12,14 +12,26 @@ using std::cout;
 using std::endl;
 
 
-void CreateNewMap()
-{}
+void CreateNewObject(unsigned int newOb, cRouter * connectedTo)
+{
+	// random selection of possible objects to create
+	// create instance of selected object
+	// set first pointer to *connectedTo
+	// write object to file
+}
 
-void OpenExistingMap()
-{}
+void ReloadExistingObject(unsigned int ID)
+{
+	// Find ID in file
+	// Read ID info to memory
+	// find pointers to all loaded connected objects
+	// assign pointers of loaded objects
+}
 
 int main()
 {
+
+/*
 	int choice;
 	bool done = false;
 	while (!done)
@@ -36,10 +48,10 @@ int main()
 			done = true;
 			break;
 		case 1:
-			CreateNewMap();
+			
 			break;
 		case 2:
-			OpenExistingMap();
+			
 			break;
 		default:
 			cout << "Error: Invalid selection.";
@@ -48,4 +60,5 @@ int main()
 	}
 	cout << "Goodbye";
 	system("pause");
+*/
 }

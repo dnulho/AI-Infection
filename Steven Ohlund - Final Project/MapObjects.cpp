@@ -10,24 +10,17 @@
 *
 *****************************************************************/
 
-#include <random>
-#include <chrono>
+#include "MapObjects.h"
 
 enum MemorySize {MB1, MB2, MB4, MB8, MB16, MB32,MB64, MB128, mMB256, MB512, MB1024, GB2, GB3, GB4, GB6, GB8, GB10, GB12, GB16, GB32, GB64, GB128, GB256, GB512, TB1 };
 enum CPUSpeed {MHz400, MHz600, MHz800, MHz1000, MHz1200, MHz1500, MHz1800, MHz2000};
-
-const int MAX_CONNECTIONS = 8;
-
-struct UniqueID
-{
-	char ID[16];
-};
+const int MAX_CONNECTIONS = 8
 
 struct Connection
 {
-	UniqueID *connectedID;
+	unsigned int *connectedID;
 	bool wired;
-	unsigned short short int signalStrength;     // Niblet? only want unsigned 1-100 % range.
+	unsigned char signalStrength;     // using values 1-100 for % strength
 	int signalSpeed;
 };
 
@@ -41,7 +34,7 @@ protected:
 
 private:
 	bool PowerOn;
-	static UniqueID simID;
+	unsigned int UniqueID;
 	MemorySize RAM;
 	CPUSpeed CPU;
 	unsigned short CPU_Cores;
@@ -58,14 +51,11 @@ class cComputer : public commonResources
 class cPhone : public commonResources
 {
 	Connection router;
-
-
 };
 
 class cRouter : public commonResources
 {
-	Connection devices[];
-	Connection routers[];
+	Connection connectedDevices[MAX_CONNECTIONS];
 };
 
 //////////////////////////////////////
