@@ -15,12 +15,16 @@ using std::endl;
 void CreateNewObject(unsigned int newOb, cRouter * connectedTo)
 {
 	// random selection of possible objects to create
-	// create instance of selected object
+	//	* Empty - ID will always be 0
+	//	* Router								// Do I want to have a large value deliniate between objects?
+	//	* Computer
+	//	* Phone
+	// Create instance of selected object
 	// set first pointer to *connectedTo
 	// write object to file
 }
 
-void ReloadExistingObject(unsigned int ID)
+void LoadObjectFromFile(unsigned int ID)
 {
 	// Find ID in file
 	// Read ID info to memory
@@ -28,9 +32,24 @@ void ReloadExistingObject(unsigned int ID)
 	// assign pointers of loaded objects
 }
 
+void SaveObjectToFile(int*ID)
+{
+	// find correct place in file to insert object
+	// make new line to place object
+	// write object to file
+	// close file
+}
+
+void FillPointer()
+{
+	// determine type of object pointed to
+	//	* If 1: uninitialized, call CreateNewObject()
+	//	* If 0: empty, leave empty
+	//	* If anything else: call LoadObjectFromFile() 
+}
+
 int main()
 {
-
 /*
 	int choice;
 	bool done = false;
@@ -48,10 +67,11 @@ int main()
 			done = true;
 			break;
 		case 1:
-			
+			CreateNewObject(2,null); // (CreateFirstObject()??)
+
 			break;
 		case 2:
-			
+			LoadObjectFromFile();
 			break;
 		default:
 			cout << "Error: Invalid selection.";
