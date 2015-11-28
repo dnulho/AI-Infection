@@ -28,21 +28,34 @@ class commonResources
 {
 public:
 	void TurnPowerOn();
-	void turnPowerOff();
+	void TurnPowerOff();
+	int GetID();
 
 protected:
+	void SetID();
+	void SetRAM(MemorySize RAM);
+	void SetCPU(CPUSpeed CPU_Speed, unsigned char Cores);
+
 
 private:
 	bool PowerOn;
 	unsigned int UniqueID;
 	MemorySize RAM;
 	CPUSpeed CPU;
-	unsigned short CPU_Cores;
+	unsigned char CPU_Cores;
+	static int IDcounter;
 
 };
 
+int commonResources::IDcounter = 2;
+
 class cComputer : public commonResources
 {
+public:
+
+private:
+	cComputer();
+	~cComputer();
 	unsigned long long int HDD_Space;
 	unsigned long long int HDD_Filled;
 	Connection router;
@@ -50,11 +63,17 @@ class cComputer : public commonResources
 
 class cPhone : public commonResources
 {
+public:
+
+private:
 	Connection router;
 };
 
 class cRouter : public commonResources
 {
+public:
+
+private:
 	Connection connectedDevices[MAX_CONNECTIONS];
 };
 
@@ -62,11 +81,38 @@ class cRouter : public commonResources
 //         commonResources			//
 //       Function Definitions		//
 //////////////////////////////////////
+// Public
 void commonResources::TurnPowerOn()
 {
 	PowerOn = true;
 }
-void commonResources::turnPowerOff()
+void commonResources::TurnPowerOff()
 {
 	PowerOn = false;
+}
+int commonResources::GetID()
+{
+	return UniqueID;
+}
+
+// Protected
+void commonResources::SetID()
+{
+	UniqueID = IDcounter;
+	IDcounter++;
+}
+void commonResources::SetRAM(MemorySize ram)
+{
+	RAM = ram;
+}
+void commonResources::SetCPU(CPUSpeed CPU_Speed, unsigned char Cores)
+{
+	CPU = CPU_Speed;
+	CPU_Cores = Cores;
+}
+
+// Private
+cComputer::cComputer()  // Initializer
+{
+	SetID();
 }

@@ -6,11 +6,21 @@
 ************************************/
 #include "MapObjects.h"
 #include <iostream>
+#include <chrono>
 
 using std::cin;
 using std::cout;
 using std::endl;
 
+void CreateFirstObject()
+{
+	// create computer object
+	// Create router object
+	// point computer pointer to router
+	// point router pointer to computer
+	// set current object to computer
+	// return memory address to computer
+}
 
 void CreateNewObject(unsigned int newOb, cRouter * connectedTo)
 {
@@ -21,7 +31,7 @@ void CreateNewObject(unsigned int newOb, cRouter * connectedTo)
 	//	* Phone
 	// Create instance of selected object
 	// set first pointer to *connectedTo
-	// write object to file
+	// call SaveObjectToFile()
 }
 
 void LoadObjectFromFile(unsigned int ID)
