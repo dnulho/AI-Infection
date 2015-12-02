@@ -6,13 +6,13 @@
 ************************************/
 #include "MapObjects.h"
 #include <iostream>
-#include <chrono>
+#include <vector>
 
 using std::cin;
 using std::cout;
 using std::endl;
 
-void CreateFirstObject()
+void CreateFirstObject(int ** currentObject, cComputer * comp, cRouter * router)
 {
 	// create computer object
 	// Create router object
@@ -26,7 +26,7 @@ void CreateNewObject(unsigned int newOb, cRouter * connectedTo)
 {
 	// random selection of possible objects to create
 	//	* Empty - ID will always be 0
-	//	* Router								// Do I want to have a large value deliniate between objects?
+	//	* Router
 	//	* Computer
 	//	* Phone
 	// Create instance of selected object
@@ -60,6 +60,8 @@ void FillPointer()
 
 int main()
 {
+	commonResources crtObj;
+
 /*
 	int choice;
 	bool done = false;
