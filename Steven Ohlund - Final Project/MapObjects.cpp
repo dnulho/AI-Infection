@@ -19,6 +19,10 @@ int commonResources::IDcounter = 0x2;
 //       Function Definitions		//
 //////////////////////////////////////
 // Public
+commonResources::commonResources()
+{
+
+}
 void commonResources::TurnPowerOn()
 {
 	PowerOn = true;
@@ -71,7 +75,10 @@ cComputer::cComputer()  // Initializer
 //       Function Definitions		//
 //////////////////////////////////////
 // Public
-
+cPhone::cPhone()
+{
+	SetID();
+}
 // Protected
 
 // Private
@@ -82,7 +89,10 @@ cComputer::cComputer()  // Initializer
 //       Function Definitions		//
 //////////////////////////////////////
 // Public
-
+cRouter::cRouter()
+{
+	SetID();
+}
 // Protected
 
 // Private

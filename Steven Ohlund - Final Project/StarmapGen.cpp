@@ -6,64 +6,60 @@
 ************************************/
 #include "MapObjects.h"
 #include <iostream>
-#include <vector>
 
 using std::cin;
 using std::cout;
 using std::endl;
 
-void CreateFirstObject(int ** currentObject, cComputer * comp, cRouter * router)
+// Standard object call
+commonResources* CreateNewObject()
 {
-	// create computer object
-	// Create router object
-	// point computer pointer to router
-	// point router pointer to computer
-	// set current object to computer
-	// return memory address to computer
+	switch (rand() % 4)// random selection of possible objects to create
+	{
+	case 0:	//	* Empty - ID will always be 0
+		return nullptr;
+	case 1:	//	* Computer
+		return new cComputer();
+	case 2:	//	* Router
+		return new cRouter();
+	case 3:	//	* Phone
+		return new cPhone();
+	default:
+		cout << "Error: CreateNewObject()::rand is outside allowed values" << endl;
+		return nullptr;
+	}
 }
 
-void CreateNewObject(unsigned int newOb, cRouter * connectedTo)
-{
-	// random selection of possible objects to create
-	//	* Empty - ID will always be 0
-	//	* Router
-	//	* Computer
-	//	* Phone
-	// Create instance of selected object
-	// set first pointer to *connectedTo
-	// call SaveObjectToFile()
-}
-
-void LoadObjectFromFile(unsigned int ID)
+commonResources* LoadObjectFromFile(unsigned int id, commonResources * obj)
 {
 	// Find ID in file
 	// Read ID info to memory
 	// find pointers to all loaded connected objects
 	// assign pointers of loaded objects
+
+	return nullptr;
 }
 
-void SaveObjectToFile(int*ID)
+void SaveObjectToFile(commonResources object)
 {
 	// find correct place in file to insert object
 	// make new line to place object
 	// write object to file
 	// close file
 }
-
-void FillPointer()
+int DisplayObjectMenu(commonResources * object)
 {
-	// determine type of object pointed to
-	//	* If 1: uninitialized, call CreateNewObject()
-	//	* If 0: empty, leave empty
-	//	* If anything else: call LoadObjectFromFile() 
+	unsigned char choice = 0;
+	// show menu with options to * display detailed stats
+	//							 * move to connected objects (another function)
+	//							 * return to main menu
+	return choice;
 }
-
 int main()
 {
-	commonResources crtObj;
-
-/*
-	int choice;
+	commonResources *crtObj = nullptr;
+	srand(time(NULL));
+	char choice;
 	bool done = false;
 	while (!done)
 	{
@@ -75,15 +71,38 @@ int main()
 		cin >> choice;
 		switch (choice)
 		{
-		case 0:
+		case '0':
 			done = true;
 			break;
-		case 1:
-			CreateNewObject(2,null); // (CreateFirstObject()??)
+		case '1':
+			crtObj = new cComputer();
+		case '2':
+			while (!done)
+			{
+				switch (DisplayObjectMenu(crtObj))
+				{
+				case -2:
+					done = true;
+					break;
+				case -1:
+					// Display Detailed Stats
+					break;
+				case 0:
+					// move to first object
+				case 1: // only valid if crtObj points to a router
 
-			break;
-		case 2:
-			LoadObjectFromFile();
+				case 2: // only valid if crtObj points to a router
+				case 3: // only valid if crtObj points to a router
+				case 4: // only valid if crtObj points to a router
+				case 5: // only valid if crtObj points to a router
+				case 6: // only valid if crtObj points to a router
+				case 7: // only valid if crtObj points to a router
+				default: // Something Broke
+					cout << "Error: main()- case 2 - default";
+					break;
+				}
+			}
+			done = false;
 			break;
 		default:
 			cout << "Error: Invalid selection.";
@@ -92,5 +111,4 @@ int main()
 	}
 	cout << "Goodbye";
 	system("pause");
-*/
 }

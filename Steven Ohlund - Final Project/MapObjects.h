@@ -20,6 +20,7 @@ struct Connection
 class commonResources
 {
 public:
+	commonResources::commonResources();
 	void TurnPowerOn();
 	void TurnPowerOff();
 	int GetID();
@@ -41,9 +42,8 @@ private:
 class cComputer : public commonResources
 {
 public:
-
-private:
 	cComputer();
+private:
 	unsigned long long int HDD_Space;
 	unsigned long long int HDD_Filled;
 	Connection router;
@@ -52,7 +52,7 @@ private:
 class cPhone : public commonResources
 {
 public:
-
+	cPhone();
 private:
 	Connection router;
 };
@@ -60,7 +60,7 @@ private:
 class cRouter : public commonResources
 {
 public:
-
+	cRouter();
 private:
 	Connection connectedDevices[MAX_CONNECTIONS];
 };
