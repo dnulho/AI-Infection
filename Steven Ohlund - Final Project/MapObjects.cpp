@@ -12,6 +12,12 @@
 
 #include "MapObjects.h"
 
+double MemorySizeVal(MemorySize size)
+{
+	int i_size = static_cast<int>(size);
+	return pow(2.0, i_size);
+}
+
 int commonResources::IDcounter = 0x2;
 
 //////////////////////////////////////
@@ -60,14 +66,36 @@ void commonResources::SetCPU(CPUSpeed CPU_Speed, unsigned char Cores)
 //       Function Definitions		//
 //////////////////////////////////////
 // Public
+MemorySize cComputer::GetHDSize()
+{
+	return HDD_Space;
+}
+
 
 // Protected
+void cComputer::SetHDSize(MemorySize size)
+{
+	HDD_Space = size;
+}
+void cComputer::SetHDFill(double fill)
+{
+	if (MemorySizeVal(HDD_Space) > fill)
+	{
+		cout << "Error: SetHDFill Overflow.";
+	}
+	else
+	{
+
+	}
+}
 
 // Private
 cComputer::cComputer()  // Initializer
 {
 	SetID();
-
+	SetRAM(static_cast<MemorySize>((rand() % 6) + 9));
+	SetCPU(static_cast<CPUSpeed>((rand() % 5) + 4), rand()%4);
+	SetHDSize(static_cast<MemorySize>((rand() % 14) + 30));
 }
 
 //////////////////////////////////////

@@ -5,11 +5,13 @@
 * Modifications:
 ************************************/
 #include "MapObjects.h"
-#include <iostream>
+#include <fstream>
 
 using std::cin;
 using std::cout;
 using std::endl;
+using std::ifstream;
+using std::ofstream;
 
 // Standard object call
 commonResources* CreateNewObject()
@@ -30,22 +32,41 @@ commonResources* CreateNewObject()
 	}
 }
 
-commonResources* LoadObjectFromFile(unsigned int id, commonResources * obj)
+commonResources* LoadObjectFromFile(unsigned int id, ifstream & ifile)
 {
-	// Find ID in file
-	// Read ID info to memory
-	// find pointers to all loaded connected objects
-	// assign pointers of loaded objects
+	if (ifile.fail())
+	{
+		ifile.close();
+		cout << "Error: LoadObjectFromFile() could not open the save file" << endl;
+		return nullptr;
+	}
+	else
+	{
+		// Find ID in file
+		// Read ID info to memory
+		// Return pointer to caller
+		return nullptr;
+	}
 
-	return nullptr;
 }
 
-void SaveObjectToFile(commonResources object)
+void SaveObjectToFile(commonResources object, ofstream & ofile)
 {
-	// find correct place in file to insert object
-	// make new line to place object
-	// write object to file
-	// close file
+	if (ofile.fail())
+	{
+		cout << "Error: SaveObjectToFile() could not open the save file";
+	}
+	else
+	{
+		// find number of lines in file
+		if (false)
+		{ }
+		// find correct place in file to insert object
+		// make new line to place object
+		// write object to file
+		// close file
+	}
+
 }
 int DisplayObjectMenu(commonResources * object)
 {
@@ -88,7 +109,7 @@ int main()
 					// Display Detailed Stats
 					break;
 				case 0:
-					// move to first object
+						// move to first object
 				case 1: // only valid if crtObj points to a router
 
 				case 2: // only valid if crtObj points to a router
