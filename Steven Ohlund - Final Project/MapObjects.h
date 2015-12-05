@@ -3,6 +3,10 @@
 #include <random>
 #include <chrono>
 
+using std::cin;
+using std::cout;
+using std::endl;
+
 
 
 enum MemorySize {
@@ -12,6 +16,7 @@ enum MemorySize {
 	TB16, TB32, TB64, TB128, TB256, TB512, PB1
 };
 enum CPUSpeed { MHz400, MHz600, MHz800, MHz1000, MHz1200, MHz1500, MHz1800, MHz2000 };
+const CPUSpeed CPUvalues[8] = { MHz400, MHz600, MHz800, MHz1000, MHz1200, MHz1500, MHz1800, MHz2000 };
 const int MAX_CONNECTIONS = 8;
 
 double MemorySizeVal(MemorySize size);
@@ -31,6 +36,7 @@ public:
 	void TurnPowerOn();
 	void TurnPowerOff();
 	int GetID();
+	virtual void DisplayStats();
 
 protected:
 	void SetID();
@@ -50,12 +56,13 @@ class cComputer : public commonResources
 {
 public:
 	cComputer();
-protected:
+	virtual void DisplayStats();
+ protected:
 	MemorySize GetHDSize();
 	void SetHDSize(MemorySize size);
 	void SetHDFill(double fill);
 private:
-	MemorySize HDD_Space;
+	MemorySize HDD_Size;
 	double HDD_Filled;
 	Connection router;
 };

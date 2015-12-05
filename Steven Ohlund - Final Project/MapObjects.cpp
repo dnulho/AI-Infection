@@ -29,6 +29,12 @@ commonResources::commonResources()
 {
 
 }
+void commonResources::DisplayStats()
+{
+	cout << "Current RAM: " << RAM << "\n"
+		<< "Current CPU Speed: " << CPUvalues[CPU] << "\n"
+		<< "Current CPU Cores: " << CPU_Cores << "\n";
+}
 void commonResources::TurnPowerOn()
 {
 	PowerOn = true;
@@ -68,24 +74,33 @@ void commonResources::SetCPU(CPUSpeed CPU_Speed, unsigned char Cores)
 // Public
 MemorySize cComputer::GetHDSize()
 {
-	return HDD_Space;
+	return HDD_Size;
+}
+void cComputer::DisplayStats()
+{
+	cout << "Current Object ID: " << GetID() << "\n"
+		<< "Current Object Type: Computer\n"
+		<< "Current Hard Drive Capacity: " << MemorySizeVal(HDD_Size) << "\n"
+		<< "Current Hard Drive space used: " << HDD_Filled << endl;
+	commonResources::DisplayStats();
+
 }
 
 
 // Protected
 void cComputer::SetHDSize(MemorySize size)
 {
-	HDD_Space = size;
+	HDD_Size = size;
 }
 void cComputer::SetHDFill(double fill)
 {
-	if (MemorySizeVal(HDD_Space) > fill)
+	if (MemorySizeVal(HDD_Size) > fill)
 	{
 		cout << "Error: SetHDFill Overflow.";
 	}
 	else
 	{
-
+		HDD_Filled = fill;
 	}
 }
 
@@ -96,6 +111,7 @@ cComputer::cComputer()  // Initializer
 	SetRAM(static_cast<MemorySize>((rand() % 6) + 9));
 	SetCPU(static_cast<CPUSpeed>((rand() % 5) + 4), rand()%4);
 	SetHDSize(static_cast<MemorySize>((rand() % 14) + 30));
+	SetHDFill(MemorySizeVal(HDD_Size) );
 }
 
 //////////////////////////////////////
