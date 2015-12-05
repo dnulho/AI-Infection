@@ -35,7 +35,7 @@ commonResources* CreateNewObject()
 commonResources* LoadObjectFromFile(unsigned int id, ifstream & ifile)
 {
 
-		// Find ID in file
+		// Find ID in file using binary search
 		// Read ID info to memory
 		// Return pointer to caller
 		return nullptr;
@@ -44,7 +44,6 @@ commonResources* LoadObjectFromFile(unsigned int id, ifstream & ifile)
 
 void SaveObjectToFile(commonResources object, ofstream & ofile)
 {
-
 		// find number of lines in file
 		if (false)
 		{ }
@@ -66,7 +65,7 @@ int DisplayObjectMenu(commonResources * object)
 int main()
 {
 	commonResources *crtObj = nullptr;
-	srand(time(NULL));
+	srand(static_cast<unsigned int>(time(NULL)));
 	char choice;
 	bool done = false;
 	while (!done)
@@ -93,7 +92,7 @@ int main()
 					done = true;
 					break;
 				case -1:
-					// Display Detailed Stats
+					crtObj.DisplayStats();
 					break;
 				case 0:
 						// move to first object
