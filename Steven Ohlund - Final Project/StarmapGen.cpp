@@ -34,30 +34,17 @@ commonResources* CreateNewObject()
 
 commonResources* LoadObjectFromFile(unsigned int id, ifstream & ifile)
 {
-	if (ifile.fail())
-	{
-		ifile.close();
-		cout << "Error: LoadObjectFromFile() could not open the save file" << endl;
-		return nullptr;
-	}
-	else
-	{
+
 		// Find ID in file
 		// Read ID info to memory
 		// Return pointer to caller
 		return nullptr;
-	}
 
 }
 
 void SaveObjectToFile(commonResources object, ofstream & ofile)
 {
-	if (ofile.fail())
-	{
-		cout << "Error: SaveObjectToFile() could not open the save file";
-	}
-	else
-	{
+
 		// find number of lines in file
 		if (false)
 		{ }
@@ -65,7 +52,7 @@ void SaveObjectToFile(commonResources object, ofstream & ofile)
 		// make new line to place object
 		// write object to file
 		// close file
-	}
+
 
 }
 int DisplayObjectMenu(commonResources * object)

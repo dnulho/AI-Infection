@@ -35,6 +35,7 @@ public:
 	commonResources::commonResources();
 	void TurnPowerOn();
 	void TurnPowerOff();
+	bool IsPowerOn();
 	int GetID();
 	virtual void DisplayStats();
 

@@ -29,12 +29,6 @@ commonResources::commonResources()
 {
 
 }
-void commonResources::DisplayStats()
-{
-	cout << "Current RAM: " << RAM << "\n"
-		<< "Current CPU Speed: " << CPUvalues[CPU] << "\n"
-		<< "Current CPU Cores: " << CPU_Cores << "\n";
-}
 void commonResources::TurnPowerOn()
 {
 	PowerOn = true;
@@ -43,9 +37,19 @@ void commonResources::TurnPowerOff()
 {
 	PowerOn = false;
 }
+bool commonResources::IsPowerOn()
+{
+	return PowerOn;
+}
 int commonResources::GetID()
 {
 	return UniqueID;
+}
+void commonResources::DisplayStats()
+{
+	cout << "Current RAM: " << RAM << "\n"
+		<< "Current CPU Speed: " << CPUvalues[CPU] << "\n"
+		<< "Current CPU Cores: " << CPU_Cores << "\n";
 }
 
 // Protected
@@ -79,11 +83,12 @@ MemorySize cComputer::GetHDSize()
 void cComputer::DisplayStats()
 {
 	cout << "Current Object ID: " << GetID() << "\n"
-		<< "Current Object Type: Computer\n"
-		<< "Current Hard Drive Capacity: " << MemorySizeVal(HDD_Size) << "\n"
+		<< "Current Object Type: Computer\n";
+	if (IsPowerOn()) { cout << "Computer is currently on\n"; }
+	else { cout << "Computer is currently off\n"; }
+	cout << "Current Hard Drive Capacity: " << MemorySizeVal(HDD_Size) << "\n"
 		<< "Current Hard Drive space used: " << HDD_Filled << endl;
 	commonResources::DisplayStats();
-
 }
 
 
@@ -108,7 +113,8 @@ void cComputer::SetHDFill(double fill)
 cComputer::cComputer()  // Initializer
 {
 	SetID();
-	SetRAM(static_cast<MemorySize>((rand() % 6) + 9));
+	TurnPowerOn();
+	SetRAM(static_cast<MemorySize>((rand() % 6) + 28));
 	SetCPU(static_cast<CPUSpeed>((rand() % 5) + 4), rand()%4);
 	SetHDSize(static_cast<MemorySize>((rand() % 14) + 30));
 	SetHDFill(MemorySizeVal(HDD_Size) );
@@ -122,6 +128,9 @@ cComputer::cComputer()  // Initializer
 cPhone::cPhone()
 {
 	SetID();
+	TurnPowerOn();
+	SetRAM(static_cast<MemorySize>((rand() % 6) + 26));
+	SetCPU(static_cast<CPUSpeed>(rand() % 8), rand() % 2);
 }
 // Protected
 
@@ -136,6 +145,9 @@ cPhone::cPhone()
 cRouter::cRouter()
 {
 	SetID();
+	TurnPowerOn();
+	SetRAM(static_cast<MemorySize>((rand() % 8) + 22));
+	SetCPU(static_cast<CPUSpeed>(rand() % 6), rand() % 2);
 }
 // Protected
 
