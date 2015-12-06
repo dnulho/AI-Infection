@@ -56,10 +56,15 @@ void SaveObjectToFile(commonResources object, ofstream & ofile)
 }
 int DisplayObjectMenu(commonResources * object)
 {
-	unsigned char choice = 0;
-	// show menu with options to * display detailed stats
-	//							 * move to connected objects (another function)
-	//							 * return to main menu
+	int choice;
+	cout << "0) Exit\n"
+		<< "1) Show Detailed Stats\n"
+		<< "2) Move to Connected object\n";
+	cin >> choice;
+	choice -= 2;
+					// show menu with options to * display detailed stats
+					//							 * move to connected objects (another function)
+					//							 * return to main menu
 	return choice;
 }
 int main()
@@ -92,12 +97,10 @@ int main()
 					done = true;
 					break;
 				case -1:
-					crtObj.DisplayStats();
+					crtObj->DisplayStats();
 					break;
-				case 0:
-						// move to first object
+				case 0:// move to first object
 				case 1: // only valid if crtObj points to a router
-
 				case 2: // only valid if crtObj points to a router
 				case 3: // only valid if crtObj points to a router
 				case 4: // only valid if crtObj points to a router

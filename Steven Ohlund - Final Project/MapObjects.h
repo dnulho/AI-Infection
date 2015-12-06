@@ -2,21 +2,27 @@
 #include <iostream>
 #include <random>
 #include <chrono>
+#include <iomanip>
 
 using std::cin;
 using std::cout;
 using std::endl;
+using std::ios;
 
 
 
 enum MemorySize {
 	B1, B2, B4, B8, B16, B32, B64, B128, B256, B512, KB1, KB2, KB4, KB8, KB16, KB32, KB64,
 	KB128, KB256, KB512, MB1, MB2, MB4, MB8, MB16, MB32, MB64, MB128, MB256, MB512, GB1,
-	GB2, GB4, GB8, GB10, GB12, GB16, GB32, GB64, GB128, GB256, GB512, TB1, TB2, TB4, TB8,
+	GB2, GB4, GB8, GB16, GB32, GB64, GB128, GB256, GB512, TB1, TB2, TB4, TB8,
 	TB16, TB32, TB64, TB128, TB256, TB512, PB1
 };
+
+const char* MemValues[];
+
 enum CPUSpeed { MHz400, MHz600, MHz800, MHz1000, MHz1200, MHz1500, MHz1800, MHz2000 };
-const CPUSpeed CPUvalues[8] = { MHz400, MHz600, MHz800, MHz1000, MHz1200, MHz1500, MHz1800, MHz2000 };
+const char* CPUvalues[];
+
 const int MAX_CONNECTIONS = 8;
 
 double MemorySizeVal(MemorySize size);
