@@ -54,12 +54,19 @@ int commonResources::GetID()
 {
 	return UniqueID;
 }
-void commonResources::DisplayStats()
+MemorySize commonResources::GetRAM()
 {
-	cout << "Current RAM: " << MemValues[RAM] << "\n"
-		<< "Current CPU Speed: " << CPUvalues[CPU] << "\n"
-		<< "Current CPU Cores: " << static_cast<int>(CPU_Cores) << "\n";
+	return commonResources::RAM;
 }
+CPUSpeed commonResources::GetCPU()
+{
+	return CPU;
+}
+unsigned char commonResources::GetCPUCores()
+{
+	return CPU_Cores;
+}
+
 
 // Protected
 void commonResources::SetID()
@@ -96,8 +103,10 @@ void cComputer::DisplayStats()
 	if (IsPowerOn()) { cout << "Computer is currently: On\n"; }
 	else { cout << "Computer is currently: Off\n"; }
 	cout << "Current Hard Drive Capacity: " << MemValues[HDD_Size] << "\n"
-		<< "Current Hard Drive space used: " << std::setprecision(3) << HDD_Filled/MemorySizeVal(HDD_Size) << endl;
-	commonResources::DisplayStats();
+		<< "Current Hard Drive space used: " << std::setprecision(3) << HDD_Filled/MemorySizeVal(HDD_Size) << "\n"
+		<< "Current RAM: " << MemValues[GetRAM()] << "\n"
+		<< "Current CPU Speed: " << CPUvalues[GetCPU()] << "\n"
+		<< "Current CPU Cores: " << static_cast<int>(GetCPUCores()) << "\n";
 }
 
 
@@ -141,6 +150,16 @@ cPhone::cPhone()
 	SetRAM(static_cast<MemorySize>((rand() % 6) + 26));
 	SetCPU(static_cast<CPUSpeed>(rand() % 8), rand() % 2);
 }
+void cPhone::DisplayStats()
+{
+	cout << "Current Object ID: " << GetID() << "\n"
+		<< "Current Object Type: Phone\n";
+	if (IsPowerOn()) { cout << "Phone is currently: On\n"; }
+	else { cout << "Phone is currently: Off\n"; }
+	cout << "Current RAM: " << MemValues[GetRAM()] << "\n"
+		<< "Current CPU Speed: " << CPUvalues[GetCPU()] << "\n"
+		<< "Current CPU Cores: " << static_cast<int>(GetCPUCores()) << "\n";
+}
 // Protected
 
 // Private
@@ -157,6 +176,16 @@ cRouter::cRouter()
 	TurnPowerOn();
 	SetRAM(static_cast<MemorySize>((rand() % 8) + 22));
 	SetCPU(static_cast<CPUSpeed>(rand() % 6), rand() % 2);
+}
+void cRouter::DisplayStats()
+{
+	cout << "Current Object ID: " << GetID() << "\n"
+		<< "Current Object Type: Router\n";
+	if (IsPowerOn()) { cout << "Router is currently: On\n"; }
+	else { cout << "Router is currently: Off\n"; }
+	cout << "Current RAM: " << MemValues[GetRAM()] << "\n"
+		<< "Current CPU Speed: " << CPUvalues[GetCPU()] << "\n"
+		<< "Current CPU Cores: " << static_cast<int>(GetCPUCores()) << "\n";
 }
 // Protected
 

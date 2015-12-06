@@ -42,7 +42,7 @@ commonResources* LoadObjectFromFile(unsigned int id, ifstream & ifile)
 
 }
 
-void SaveObjectToFile(commonResources object, ofstream & ofile)
+void SaveObjectToFile(commonResources* object, ofstream & ofile)
 {
 		// find number of lines in file
 		if (false)
@@ -54,7 +54,7 @@ void SaveObjectToFile(commonResources object, ofstream & ofile)
 
 
 }
-int DisplayObjectMenu(commonResources * object)
+int DisplayObjectMenu(commonResources* object)
 {
 	int choice;
 	cout << "0) Exit\n"

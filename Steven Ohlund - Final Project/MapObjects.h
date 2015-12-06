@@ -43,7 +43,10 @@ public:
 	void TurnPowerOff();
 	bool IsPowerOn();
 	int GetID();
-	virtual void DisplayStats();
+	MemorySize GetRAM();
+	CPUSpeed GetCPU();
+	unsigned char GetCPUCores();
+	virtual void DisplayStats() =0;
 
 protected:
 	void SetID();
@@ -63,7 +66,7 @@ class cComputer : public commonResources
 {
 public:
 	cComputer();
-	virtual void DisplayStats();
+	void DisplayStats();
  protected:
 	MemorySize GetHDSize();
 	void SetHDSize(MemorySize size);
@@ -78,6 +81,7 @@ class cPhone : public commonResources
 {
 public:
 	cPhone();
+	void DisplayStats();
 private:
 	Connection router;
 };
@@ -86,6 +90,7 @@ class cRouter : public commonResources
 {
 public:
 	cRouter();
+	void DisplayStats();
 private:
 	Connection connectedDevices[MAX_CONNECTIONS];
 };
