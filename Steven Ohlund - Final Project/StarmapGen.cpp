@@ -40,7 +40,7 @@ commonResources* LoadObjectFromFile(unsigned int id, ifstream & ifile)
 		// Return pointer to caller
 		return nullptr;
 
-}
+}w
 
 void SaveObjectToFile(commonResources* object, ofstream & ofile)
 {

@@ -12,6 +12,8 @@
 
 #include "MapObjects.h"
 
+const char* ObjectValue[] = { "Computer", "Phone", "Router" }
+
 const char* MemValues[] = {
 	"B1", "B2", "B4", "B8", "B16", "B32", "B64", "B128", "B256", "B512", "KB1", "KB2", "KB4", "KB8", "KB16", "KB32", "KB64",
 	"KB128", "KB256", "KB512", "MB1", "MB2", "MB4", "MB8", "MB16", "MB32", "MB64", "MB128", "MB256", "MB512", "GB1",
