@@ -12,7 +12,7 @@
 
 #include "MapObjects.h"
 
-const char* ObjectValue[] = { "Computer", "Phone", "Router" }
+const char* ObjectValue[] = { "Computer", "Phone", "Router" };
 
 const char* MemValues[] = {
 	"B1", "B2", "B4", "B8", "B16", "B32", "B64", "B128", "B256", "B512", "KB1", "KB2", "KB4", "KB8", "KB16", "KB32", "KB64",
@@ -69,6 +69,11 @@ unsigned char commonResources::GetCPUCores()
 	return CPU_Cores;
 }
 
+ObjectType commonResources::GetObject()
+{
+	return object;
+}
+
 
 // Protected
 void commonResources::SetID()
@@ -86,6 +91,27 @@ void commonResources::SetCPU(CPUSpeed CPU_Speed, unsigned char Cores)
 	CPU_Cores = Cores;
 }
 
+void commonResources::SetObject()
+{
+	switch (rand() % 3)
+	{
+	case 0:
+		object = Computer;
+		break;
+	case 1:
+		object = Phone;
+		break;
+	case 2:
+		object = Router;
+		break;
+	default:
+		cout << "Error: SetObject() broke.";
+	}
+}
+void commonResources::SetObject(ObjectType type)
+{
+	object = type;
+}
 // Private
 
 
@@ -134,8 +160,9 @@ cComputer::cComputer()  // Initializer
 {
 	SetID();
 	TurnPowerOn();
+	SetObject(Computer);
 	SetRAM(static_cast<MemorySize>((rand() % 6) + 28));
-	SetCPU(static_cast<CPUSpeed>((rand() % 5) + 4), rand() % 4);
+	SetCPU(static_cast<CPUSpeed>((rand() % 4) + 4), rand() % 4);
 	SetHDSize(static_cast<MemorySize>((rand() % 14) + 30));
 	SetHDFill(MemorySizeVal(HDD_Size) );
 }
@@ -149,6 +176,7 @@ cPhone::cPhone()
 {
 	SetID();
 	TurnPowerOn();
+	SetObject(Phone);
 	SetRAM(static_cast<MemorySize>((rand() % 6) + 26));
 	SetCPU(static_cast<CPUSpeed>(rand() % 8), rand() % 2);
 }
@@ -176,6 +204,7 @@ cRouter::cRouter()
 {
 	SetID();
 	TurnPowerOn();
+	SetObject(Router);
 	SetRAM(static_cast<MemorySize>((rand() % 8) + 22));
 	SetCPU(static_cast<CPUSpeed>(rand() % 6), rand() % 2);
 }

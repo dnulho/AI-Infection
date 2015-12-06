@@ -14,23 +14,6 @@ using std::ifstream;
 using std::ofstream;
 
 // Standard object call
-commonResources* CreateNewObject()
-{
-	switch (rand() % 4)// random selection of possible objects to create
-	{
-	case 0:	//	* Empty - ID will always be 0
-		return nullptr;
-	case 1:	//	* Computer
-		return new cComputer();
-	case 2:	//	* Router
-		return new cRouter();
-	case 3:	//	* Phone
-		return new cPhone();
-	default:
-		cout << "Error: CreateNewObject()::rand is outside allowed values" << endl;
-		return nullptr;
-	}
-}
 
 commonResources* LoadObjectFromFile(unsigned int id, ifstream & ifile)
 {
@@ -40,7 +23,7 @@ commonResources* LoadObjectFromFile(unsigned int id, ifstream & ifile)
 		// Return pointer to caller
 		return nullptr;
 
-}w
+}
 
 void SaveObjectToFile(commonResources* object, ofstream & ofile)
 {

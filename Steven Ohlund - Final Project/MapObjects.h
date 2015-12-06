@@ -30,7 +30,7 @@ double MemorySizeVal(MemorySize size);
 
 struct Connection
 {
-	unsigned int *connectedID;
+	unsigned int connectedID;
 	bool wired;
 	unsigned char signalStrength;     // using values 1-100 for % strength
 	int signalSpeed;
@@ -48,13 +48,17 @@ public:
 	CPUSpeed GetCPU();
 	unsigned char GetCPUCores();
 	virtual void DisplayStats() =0;
+	ObjectType GetObject();
 
 protected:
 	void SetID();
 	void SetRAM(MemorySize RAM);
 	void SetCPU(CPUSpeed CPU_Speed, unsigned char Cores);
+	void SetObject();
+	void SetObject(ObjectType object);
 
 private:
+	ObjectType object;
 	bool PowerOn;
 	unsigned int UniqueID;
 	MemorySize RAM;
