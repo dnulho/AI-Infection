@@ -49,9 +49,10 @@ public:
 	unsigned char GetCPUCores();
 	virtual void DisplayStats() =0;
 	ObjectType GetObject();
+	unsigned int GetNewID();
 
 protected:
-	void SetID();
+	void SetID(unsigned int ID);
 	void SetRAM(MemorySize RAM);
 	void SetCPU(CPUSpeed CPU_Speed, unsigned char Cores);
 	void SetObject();
@@ -76,6 +77,7 @@ public:
 	MemorySize GetHDSize();
 	void SetHDSize(MemorySize size);
 	void SetHDFill(double fill);
+	void SetConnection(unsigned int ID);
 private:
 	MemorySize HDD_Size;
 	double HDD_Filled;

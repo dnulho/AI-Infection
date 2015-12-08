@@ -102,6 +102,6 @@ int main()
 			system("pause");
 		}
 	}
-	cout << "Goodbye";
+	cout << "Goodbye\n";
 	system("pause");
 }

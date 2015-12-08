@@ -38,7 +38,6 @@ int commonResources::IDcounter = 0x2;
 // Public
 commonResources::commonResources()
 {
-
 }
 void commonResources::TurnPowerOn()
 {
@@ -76,10 +75,13 @@ ObjectType commonResources::GetObject()
 
 
 // Protected
-void commonResources::SetID()
+unsigned int commonResources::GetNewID()
 {
-	UniqueID = IDcounter;
-	IDcounter++;
+	return commonResources::IDcounter++;
+}
+void commonResources::SetID(unsigned int ID)
+{
+	UniqueID = ID;
 }
 void commonResources::SetRAM(MemorySize ram)
 {
@@ -120,6 +122,17 @@ void commonResources::SetObject(ObjectType type)
 //       Function Definitions		//
 //////////////////////////////////////
 // Public
+cComputer::cComputer()  // Initializer
+{
+	SetID(GetNewID());
+	TurnPowerOn();
+	SetObject(Computer);
+	SetRAM(static_cast<MemorySize>((rand() % 6) + 28));
+	SetCPU(static_cast<CPUSpeed>((rand() % 4) + 4), rand() % 4);
+	SetHDSize(static_cast<MemorySize>((rand() % 14) + 30));
+	SetHDFill(MemorySizeVal(HDD_Size) / (rand() % 100 + 1));
+	SetConnection(GetNewID());
+}
 MemorySize cComputer::GetHDSize()
 {
 	return HDD_Size;
@@ -131,10 +144,11 @@ void cComputer::DisplayStats()
 	if (IsPowerOn()) { cout << "Computer is currently: On\n"; }
 	else { cout << "Computer is currently: Off\n"; }
 	cout << "Current Hard Drive Capacity: " << MemValues[HDD_Size] << "\n"
-		<< "Current Hard Drive space used: " << std::setprecision(3) << HDD_Filled/MemorySizeVal(HDD_Size) << "\n"
+		<< "Current Hard Drive space used: " << std::setprecision(3) << MemorySizeVal(HDD_Size) / HDD_Filled << "\n"
 		<< "Current RAM: " << MemValues[GetRAM()] << "\n"
 		<< "Current CPU Speed: " << CPUvalues[GetCPU()] << "\n"
-		<< "Current CPU Cores: " << static_cast<int>(GetCPUCores()) << "\n";
+		<< "Current CPU Cores: " << static_cast<int>(GetCPUCores()) << "\n"
+		<< "Connected to router: " << router.connectedID << "\n";
 }
 
 
@@ -145,27 +159,25 @@ void cComputer::SetHDSize(MemorySize size)
 }
 void cComputer::SetHDFill(double fill)
 {
-	if (MemorySizeVal(HDD_Size) > fill)
+	if (MemorySizeVal(HDD_Size) < fill)
 	{
 		cout << "Error: SetHDFill Overflow.";
+		HDD_Filled = 0;
 	}
 	else
 	{
 		HDD_Filled = fill;
 	}
 }
-
-// Private
-cComputer::cComputer()  // Initializer
+void cComputer::SetConnection(unsigned int ID)
 {
-	SetID();
-	TurnPowerOn();
-	SetObject(Computer);
-	SetRAM(static_cast<MemorySize>((rand() % 6) + 28));
-	SetCPU(static_cast<CPUSpeed>((rand() % 4) + 4), rand() % 4);
-	SetHDSize(static_cast<MemorySize>((rand() % 14) + 30));
-	SetHDFill(MemorySizeVal(HDD_Size) );
+	router.connectedID = ID;
+	router.wired = true;
+	router.signalStrength = rand() % 100 + 1;
+	router.signalSpeed = rand() % 20 + 1;
 }
+// Private
+
 
 //////////////////////////////////////
 //              cPhone				//
@@ -174,7 +186,7 @@ cComputer::cComputer()  // Initializer
 // Public
 cPhone::cPhone()
 {
-	SetID();
+//	SetID();
 	TurnPowerOn();
 	SetObject(Phone);
 	SetRAM(static_cast<MemorySize>((rand() % 6) + 26));
@@ -202,7 +214,7 @@ void cPhone::DisplayStats()
 // Public
 cRouter::cRouter()
 {
-	SetID();
+//	SetID();
 	TurnPowerOn();
 	SetObject(Router);
 	SetRAM(static_cast<MemorySize>((rand() % 8) + 22));
