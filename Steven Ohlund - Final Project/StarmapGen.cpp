@@ -55,6 +55,7 @@ int main()
 	char choice;
 	bool done = false;
 	char filename[] = "test.txt";
+	fstream file(filename);
 	while (!done)
 	{
 		system("cls");
@@ -69,7 +70,7 @@ int main()
 			done = true;
 			break;
 		case '2':
-			fstream file(filename);
+			
 			if (file.fail())
 			{
 				cout << "Error: could not open save file";
