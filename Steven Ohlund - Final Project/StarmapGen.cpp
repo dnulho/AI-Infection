@@ -48,6 +48,24 @@ unsigned int findSavedID(fstream & file)
 	file >> savedID;
 	return savedID;
 }
+
+
+/***************************************************************************
+* Assignment: CST116 - Final Project
+*
+* Overview: This Program is intended to generate a virtual map of objects
+*			based on a set of procedural rules that govern said generation.
+*			This map generation software is a small piece of a larger program
+*			idea that is intended to turn into a game.
+*
+* Input: * Menu Selections from keyboard
+*		 * Object stats From Save File
+*
+* Output: * Menu Options to Console
+*		  * Object Stats to Console - Human readable
+*		  * Object Stats to Save File - not very human readable
+*
+***************************************************************************/
 int main()
 {
 	commonResources *crtObj = nullptr;

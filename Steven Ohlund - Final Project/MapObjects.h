@@ -1,3 +1,10 @@
+/************************************
+* Author: Steven Ohlund
+* File Name: MapObjects.h
+* Date Created: 11.2.15
+* Modifications:
+************************************/
+
 #pragma once
 #include <iostream>
 #include <random>
@@ -40,6 +47,38 @@ struct Connection
 	int signalSpeed;
 	ObjectType object;
 };
+
+/**********************************************************************************************
+* Class: commonResources
+*
+* Purpose: To have an abstract base class that I can polymorph into all of the child classes
+*
+* Public Member Functions
+*			void TurnPowerOn(); and	void TurnPowerOff();
+*				changes the Poweron flag;
+*
+*			bool IsPowerOn();
+*				Returns poweron flag
+*			int GetID();
+*				Returns object's ID
+*			MemorySize GetRAM();
+*				Returns Object's RAM value 
+*			CPUSpeed GetCPU();
+*				Returns Object's CPU speed value				
+*			unsigned char GetCPUCores();
+*				Returns Object's # of CPU cores
+*			virtual void DisplayStats() =0;
+*				Pure virtual function that displays Objects stats to console in a human understandable way
+*			ObjectType GetObject();
+*				Returns Object's type
+*			virtual void WriteObjectToFile(ofstream & file);'
+*				Writes the stats of the object to the passed filestream
+*
+*	Methods:
+*		None at this point
+*
+*
+**********************************************************************************************/
 
 class commonResources
 {
