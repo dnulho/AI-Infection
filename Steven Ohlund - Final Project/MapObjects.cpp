@@ -132,12 +132,16 @@ cComputer::cComputer()  // Initializer
 	SetRAM(static_cast<MemorySize>((rand() % 6) + 28));
 	SetCPU(static_cast<CPUSpeed>((rand() % 4) + 4), rand() % 4);
 	SetHDSize(static_cast<MemorySize>((rand() % 14) + 30));
-	SetHDFill(MemorySizeVal(HDD_Size) / (rand() % 100 + 1));
+	SetHDFill( MemorySizeVal(HDD_Size) * ((10 / rand() % 900) + 10));
 	SetConnection(GetNewID());
 }
 MemorySize cComputer::GetHDSize()
 {
 	return HDD_Size;
+}
+double cComputer::GetHDFill()
+{
+	return MemorySizeVal(HDD_Size) / HDD_Filled;
 }
 void cComputer::DisplayStats()
 {
@@ -146,7 +150,7 @@ void cComputer::DisplayStats()
 	if (IsPowerOn()) { cout << "Computer is currently: On\n"; }
 	else { cout << "Computer is currently: Off\n"; }
 	cout << "Current Hard Drive Capacity: " << MemValues[HDD_Size] << "\n"
-		<< "Current Hard Drive space used: " << std::setprecision(3) << MemorySizeVal(HDD_Size) / HDD_Filled << "\n"
+		<< "Current Hard Drive space used: " << std::setprecision(3) << GetHDFill() << "\n"
 		<< "Current RAM: " << MemValues[GetRAM()] << "\n"
 		<< "Current CPU Speed: " << CPUvalues[GetCPU()] << "\n"
 		<< "Current CPU Cores: " << static_cast<int>(GetCPUCores()) << "\n"
@@ -204,6 +208,14 @@ void cPhone::DisplayStats()
 		<< "Current CPU Speed: " << CPUvalues[GetCPU()] << "\n"
 		<< "Current CPU Cores: " << static_cast<int>(GetCPUCores()) << "\n";
 }
+void cPhone::SetConnection(unsigned int ID)
+{
+	router.connectedID = ID;
+	router.wired = false;
+	router.signalStrength = rand() % 100 + 1;
+	router.signalSpeed = rand() % 20 + 1;
+	router.object = Router;
+}
 // Protected
 
 // Private
@@ -227,7 +239,8 @@ void cRouter::DisplayStats()
 {
 	cout << "Current Object ID: " << GetID() << "\n"
 		<< "Current Object Type: Router\n";
-	if (IsPowerOn()) { cout << "Router is currently: On\n"; }
+	if (IsPowerOn())
+		 { cout << "Router is currently: On\n"; }
 	else { cout << "Router is currently: Off\n"; }
 	cout << "Current RAM: " << MemValues[GetRAM()] << "\n"
 		<< "Current CPU Speed: " << CPUvalues[GetCPU()] << "\n"
@@ -238,15 +251,17 @@ void cRouter::SetConnection(unsigned int ID, ObjectType object)
 	if (activeConnections < MAX_CONNECTIONS)
 	{
 		connectedDevices[activeConnections].connectedID = ID;
-		connectedDevices[activeConnections].wired = true;
+		connectedDevices[activeConnections].object = object;
+		if (object = Phone)
+			 { connectedDevices[activeConnections].wired = false; }
+		else { connectedDevices[activeConnections].wired = true; }
 		connectedDevices[activeConnections].signalStrength = rand() % 100 + 1;
 		connectedDevices[activeConnections].signalSpeed = rand() % 20 + 1;
 		activeConnections++;
-		connectedDevices[activeConnections].object = object;
 	}
 	else
 	{
-		cout << "Error: Router already has Connections filled";
+		cout << "Error: Router already has all connections filled";
 	}
 }
 // Protected

@@ -54,32 +54,30 @@ struct Connection
 * Purpose: To have an abstract base class that I can polymorph into all of the child classes
 *
 * Public Member Functions
-*			void TurnPowerOn(); and	void TurnPowerOff();
-*				changes the Poweron flag;
+*		void TurnPowerOn(); and	void TurnPowerOff();
+*			changes the Poweron flag;
+*		bool IsPowerOn();
+*			Returns poweron flag
+*		int GetID();
+*			Returns object's ID
+*		MemorySize GetRAM();
+*			Returns Object's RAM value 
+*		CPUSpeed GetCPU();
+*			Returns Object's CPU speed value				
+*		unsigned char GetCPUCores();
+*			Returns Object's # of CPU cores
+*		virtual void DisplayStats() =0;
+*			Pure virtual function that displays Objects stats to console in a human understandable way
+*		ObjectType GetObject();
+*			Returns Object's type
+*		virtual void WriteObjectToFile(ofstream & file);'
+*			Writes the stats of the object to the passed filestream
 *
-*			bool IsPowerOn();
-*				Returns poweron flag
-*			int GetID();
-*				Returns object's ID
-*			MemorySize GetRAM();
-*				Returns Object's RAM value 
-*			CPUSpeed GetCPU();
-*				Returns Object's CPU speed value				
-*			unsigned char GetCPUCores();
-*				Returns Object's # of CPU cores
-*			virtual void DisplayStats() =0;
-*				Pure virtual function that displays Objects stats to console in a human understandable way
-*			ObjectType GetObject();
-*				Returns Object's type
-*			virtual void WriteObjectToFile(ofstream & file);'
-*				Writes the stats of the object to the passed filestream
-*
-*	Methods:
+* Methods:
 *		None at this point
 *
 *
 **********************************************************************************************/
-
 class commonResources
 {
 public:
@@ -113,31 +111,80 @@ private:
 	static int IDcounter;
 };
 
+/********************************************************************************************
+* Class: cComputer
+*
+* Purpose: To define an object of type computer
+*
+* Public Member Functions:
+*		Inherits all functions from commonResources
+*		MemorySize GetHDSize();
+*			Returns the Hard drive size
+*		double GetHDFill();
+*			Returns the percent filled of the hard drive
+*		void SetConnection(unsigned int ID);
+*			Sets the ID given as the router connected to, and the connection as wired with random speed and strength
+*
+* Methods:
+*		None at this time
+*
+**********************************************************************************************/
 class cComputer : public commonResources
 {
 public:
 	cComputer();
 	void DisplayStats();
- protected:
 	MemorySize GetHDSize();
+	double GetHDFill();
+	void SetConnection(unsigned int ID);
+protected:
 	void SetHDSize(MemorySize size);
 	void SetHDFill(double fill);
-	void SetConnection(unsigned int ID);
+
 private:
 	MemorySize HDD_Size;
 	double HDD_Filled;
 	Connection router;
 };
 
+/********************************************************************************************
+* Class: cPhone
+*
+* Purpose: To define an object of type phone
+*
+* Public Member Functions:
+*		Inherits all functions from commonResources
+*		void SetConnection(unsigned int ID);
+*			Sets the ID given as the router connected to, and the connection as wireless with random speed and strength
+*
+* Methods:
+*		None at this time
+*
+**********************************************************************************************/
 class cPhone : public commonResources
 {
 public:
 	cPhone();
 	void DisplayStats();
+	void SetConnection(unsigned int ID);
 private:
 	Connection router;
 };
 
+/********************************************************************************************
+* Class: cRouter
+*
+* Purpose: To define an object of type router
+*
+* Public Member Functions:
+*		Inherits all functions from commonResources
+*		void SetConnection(unsigned int ID, ObjectType object);
+*			Sets the ID given as the object connected to, and the connection as wired or wireless with random speed and strength
+*
+* Methods:
+*		None at this time
+*
+**********************************************************************************************/
 class cRouter : public commonResources
 {
 public:
