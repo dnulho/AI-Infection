@@ -67,12 +67,14 @@ unsigned char commonResources::GetCPUCores()
 {
 	return CPU_Cores;
 }
-
 ObjectType commonResources::GetObject()
 {
 	return object;
 }
-
+void commonResources::WriteObjectToFile(ofstream & file)
+{
+	file << UniqueID << " " << static_cast<short int>(object) << " " << IsPowerOn() << " " << static_cast<short int>(RAM) << " " << static_cast<short int>(CPU) << " " << static_cast<short int>(CPU_Cores) << " ";
+}
 
 // Protected
 unsigned int commonResources::GetNewID()
@@ -151,7 +153,6 @@ void cComputer::DisplayStats()
 		<< "Connected to router: " << router.connectedID << "\n";
 }
 
-
 // Protected
 void cComputer::SetHDSize(MemorySize size)
 {
@@ -175,6 +176,7 @@ void cComputer::SetConnection(unsigned int ID)
 	router.wired = true;
 	router.signalStrength = rand() % 100 + 1;
 	router.signalSpeed = rand() % 20 + 1;
+	router.object = Router;
 }
 // Private
 
@@ -219,6 +221,7 @@ cRouter::cRouter()
 	SetObject(Router);
 	SetRAM(static_cast<MemorySize>((rand() % 8) + 22));
 	SetCPU(static_cast<CPUSpeed>(rand() % 6), rand() % 2);
+	activeConnections = 0;
 }
 void cRouter::DisplayStats()
 {
@@ -229,6 +232,22 @@ void cRouter::DisplayStats()
 	cout << "Current RAM: " << MemValues[GetRAM()] << "\n"
 		<< "Current CPU Speed: " << CPUvalues[GetCPU()] << "\n"
 		<< "Current CPU Cores: " << static_cast<int>(GetCPUCores()) << "\n";
+}
+void cRouter::SetConnection(unsigned int ID, ObjectType object)
+{ 
+	if (activeConnections < MAX_CONNECTIONS)
+	{
+		connectedDevices[activeConnections].connectedID = ID;
+		connectedDevices[activeConnections].wired = true;
+		connectedDevices[activeConnections].signalStrength = rand() % 100 + 1;
+		connectedDevices[activeConnections].signalSpeed = rand() % 20 + 1;
+		activeConnections++;
+		connectedDevices[activeConnections].object = object;
+	}
+	else
+	{
+		cout << "Error: Router already has Connections filled";
+	}
 }
 // Protected
 

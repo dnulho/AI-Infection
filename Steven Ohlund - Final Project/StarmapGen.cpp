@@ -5,27 +5,19 @@
 * Modifications:
 ************************************/
 #include "MapObjects.h"
-#include <fstream>
 
-using std::cin;
-using std::cout;
-using std::endl;
-using std::ifstream;
-using std::ofstream;
 
 // Standard object call
 
-commonResources* LoadObjectFromFile(unsigned int id, ifstream & ifile)
+commonResources* LoadObjectFromFile(unsigned int id, fstream & ifile)
 {
-
 		// Find ID in file using binary search
 		// Read ID info to memory
 		// Return pointer to caller
 		return nullptr;
-
 }
 
-void SaveObjectToFile(commonResources* object, ofstream & ofile)
+void SaveObjectToFile(commonResources* object, ofstream & file)
 {
 		// find number of lines in file
 		if (false)
@@ -34,9 +26,8 @@ void SaveObjectToFile(commonResources* object, ofstream & ofile)
 		// make new line to place object
 		// write object to file
 		// close file
-
-
 }
+
 int DisplayObjectMenu(commonResources* object)
 {
 	int choice;
@@ -50,12 +41,20 @@ int DisplayObjectMenu(commonResources* object)
 					//							 * return to main menu
 	return choice;
 }
+
+unsigned int findSavedID(fstream & file)
+{
+	unsigned int savedID;
+	file >> savedID;
+	return savedID;
+}
 int main()
 {
 	commonResources *crtObj = nullptr;
 	srand(static_cast<unsigned int>(time(NULL)));
 	char choice;
 	bool done = false;
+	char filename[] = "test.txt";
 	while (!done)
 	{
 		system("cls");
@@ -69,9 +68,18 @@ int main()
 		case '0':
 			done = true;
 			break;
+		case '2':
+			fstream file(filename);
+			if (file.fail())
+			{
+				cout << "Error: could not open save file";
+			}
+			else
+			{
+				crtObj = LoadObjectFromFile(findSavedID(file), file);
+			}
 		case '1':
 			crtObj = new cComputer();
-		case '2':
 			while (!done)
 			{
 				switch (DisplayObjectMenu(crtObj))

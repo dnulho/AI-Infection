@@ -3,10 +3,14 @@
 #include <random>
 #include <chrono>
 #include <iomanip>
+#include <fstream>
 
 using std::cin;
 using std::cout;
 using std::endl;
+using std::ifstream;
+using std::ofstream;
+using std::fstream;
 using std::ios;
 
 enum ObjectType {Computer, Phone, Router};
@@ -34,6 +38,7 @@ struct Connection
 	bool wired;
 	unsigned char signalStrength;     // using values 1-100 for % strength
 	int signalSpeed;
+	ObjectType object;
 };
 
 class commonResources
@@ -49,9 +54,10 @@ public:
 	unsigned char GetCPUCores();
 	virtual void DisplayStats() =0;
 	ObjectType GetObject();
-	unsigned int GetNewID();
+	virtual void WriteObjectToFile(ofstream & file);
 
 protected:
+	unsigned int GetNewID();
 	void SetID(unsigned int ID);
 	void SetRAM(MemorySize RAM);
 	void SetCPU(CPUSpeed CPU_Speed, unsigned char Cores);
@@ -98,6 +104,9 @@ class cRouter : public commonResources
 public:
 	cRouter();
 	void DisplayStats();
+	void SetConnection(unsigned int ID, ObjectType object);
+
 private:
 	Connection connectedDevices[MAX_CONNECTIONS];
+	short int activeConnections;
 };
