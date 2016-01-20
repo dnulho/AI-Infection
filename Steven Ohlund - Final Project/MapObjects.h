@@ -2,7 +2,7 @@
 * Author: Steven Ohlund
 * File Name: MapObjects.h
 * Date Created: 11.2.15
-* Modifications:
+* Modifications: To numerous to count, see github commit history to see changes.
 ************************************/
 
 #pragma once
@@ -74,8 +74,7 @@ struct Connection
 *			Writes the stats of the object to the passed filestream
 *
 * Methods:
-*		None at this point
-*
+*		None at this time
 *
 **********************************************************************************************/
 class commonResources

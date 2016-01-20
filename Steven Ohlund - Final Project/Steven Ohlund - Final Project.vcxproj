@@ -22,7 +22,7 @@
     <ProjectGuid>{DC1B84EE-F9DD-4800-AD12-670B08B41B5C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>StevenOhlundFinalProject</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
     <ProjectName>AI-Infection</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -150,7 +150,7 @@
     <ClInclude Include="MapObjects.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\AI Infection - Final Project Proposal.docx" />
+    <None Include="..\AI Infection - Project Proposal.docx" />
     <None Include="..\README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

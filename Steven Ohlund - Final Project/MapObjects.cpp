@@ -2,7 +2,7 @@
 * Author: Steven Ohlund
 * File Name: MapObjects.cpp
 * Date Created: 11.2.15
-* Modifications: 
+* Modifications: To numerous to count, see github commit history to see changes.
 ******************************************************************
 * This File creates and declares the objects that will be used
 * in StarMapGen.cpp
